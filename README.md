@@ -1,4 +1,4 @@
-# eCommerce DRF-REST-APIs 
+# eCommerce REST-APIs 
 
 ![Database Design](https://github.com/hossainchisty/eCommerce-backend-APIs/blob/master/e-commerce-database-desgin.png)
 
@@ -18,6 +18,6 @@
 * Admin Order details page.
 * Mark orders as delivered option.
 
-
+Thanks.
 
 
