@@ -1,0 +1,88 @@
+User-agent: *
+Disallow: /
+
+User-agent: Applebot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+
+User-agent: baiduspider
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: Bingbot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: DuckDuckBot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: Googlebot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: ia_archiver
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: msnbot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: Naverbot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: seznambot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: Slurp
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /client_error/
+
+User-agent: teoma
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: Twitterbot
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: Yandex
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+User-agent: Yeti
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /expenses/
+Disallow: /client_error/
+
+Sitemap: http://127.0.0.1:8000/sitemap.xml
