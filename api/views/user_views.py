@@ -1,23 +1,20 @@
 # Essential DRF & Simple JWT imports
-from rest_framework import status
-from rest_framework.response import Response
-from django.contrib.auth.hashers import make_password
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
 # Essential serializers imports
-from api.serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
-
-from django.contrib.auth.models import User
-from django.contrib.auth.models import AnonymousUser
+from api.serializers import (
+    ProductSerializer,
+    UserLoginSerializer,
+    UserSerializer,
+    UserSerializerWithToken,
+)
 from django.conf import settings
-
-
-from rest_framework.views import APIView
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AnonymousUser, User
+from rest_framework import permissions, status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import status, permissions
+from rest_framework.views import APIView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 User = settings.AUTH_USER_MODEL
@@ -27,7 +24,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = UserSerializerWithToken
 
 
-class UserCreateView(APIView):
+class UserRegisterView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format="json"):
@@ -38,6 +35,30 @@ class UserCreateView(APIView):
                 json = serializer.data
             return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLoginView(APIView):
+    serializer_class = UserLoginSerializer
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        valid = serializer.is_valid(raise_exception=True)
+
+        if valid:
+            status_code = status.HTTP_200_OK
+
+            response = {
+                "success": True,
+                "status_code": status_code,
+                "message": "User logged in successfully",
+                "access": serializer.data["access"],
+                "refresh": serializer.data["refresh"],
+                "authenticatedUser": {
+                    "email": serializer.data["email"],
+                },
+            }
+            return Response(response, status=status_code)
 
 
 @api_view(["PUT"])

@@ -1,13 +1,14 @@
 # imports Essential DRF & Simple JWT
+from django.conf import settings
+from django.contrib.auth import authenticate
 from django.utils import timezone
 from rest_framework import serializers
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+from taggit.serializers import TaggitSerializer, TagListSerializerField
 
 # imports Essential MODELS
-from .models import Product, Review, Order, OrderItem, shippingAddress, CustomUser
-from taggit.serializers import TagListSerializerField, TaggitSerializer
-from django.conf import settings
+from .models import CustomUser, Order, OrderItem, Product, Review, shippingAddress
 
 User = settings.AUTH_USER_MODEL
 
@@ -70,6 +71,38 @@ class UserSerializerWithToken(TokenObtainPairSerializer):
     def get_token(cls, token):
         token = super(UserSerializerWithToken, cls).get_token(user)
         return token
+
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(max_length=16, write_only=True)
+    access = serializers.CharField(read_only=True)
+    refresh = serializers.CharField(read_only=True)
+
+    def validate(self, data):
+        email = data["email"]
+        password = data["password"]
+        user = authenticate(email=email, password=password)
+
+        if user is not None:
+            raise serializers.ValidationError("Invalid login credentials.")
+
+        try:
+            refresh = RefreshToken.for_user(user)
+            refresh_token = str(refresh)
+            access_token = str(refresh.access_token)
+
+            update_last_login(None, user)
+
+            validation = {
+                "access": access_token,
+                "refresh": refresh_token,
+                "email": user.email,
+            }
+
+            return validation
+        except CustomUser.DoesNotExist:
+            raise serializers.ValidationError("Invalid login credentials")
 
 
 class ProductSerializer(TaggitSerializer, serializers.ModelSerializer):
