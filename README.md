@@ -7,6 +7,7 @@
 * Full featured shopping cart.
 * Product reviews and ratings.
 * Product search feature.
+* Product wishlist.
 * Product suggestion by similarity.
 * User can create overall experience with our rider.
 * Product pagination system.
