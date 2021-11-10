@@ -7,6 +7,7 @@
 * Full featured shopping cart.
 * Product reviews and ratings.
 * Product search feature.
+* Product wishlist.
 * Product suggestion by similarity.
 * User can create overall experience with our rider.
 * Product pagination system.
@@ -19,6 +20,8 @@
 * Admin Order details page.
 * Mark orders as delivered option.
 
-### Thanks.
+Author:
+<a href="https://www.linkedin.com/in/hossainchisty/" target="_blank">Hossain Chisty</a><br>
+If you would like to have my help with your team and product, feel free to contact me. 🤓
 
 
