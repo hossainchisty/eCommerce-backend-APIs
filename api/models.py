@@ -87,6 +87,8 @@ class Product(models.Model):
     rating = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
     numbersOfReview = models.IntegerField(null=True, blank=True, default=0)
     countInStock = models.IntegerField(null=True, blank=True)
+    isOutOfStock = models.BooleanField(default=False)
+    isAvailable = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
 
     _id = models.AutoField(primary_key=True, editable=False)
