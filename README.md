@@ -13,7 +13,7 @@
 * Top rated products filters.
 * User signup and sign in system with JWT.
 * User profile with orders.
-* User profile editing stytem.
+* User profile editing system.
 * Admin manage all products.
 * Admin manage all user.
 * Admin Order details page.
